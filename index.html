@@ -168,6 +168,7 @@ style="display: block; margin: 0 auto; border: 0;">Loading…</iframe>
   </dialog>
 <audio id="bg-music" src="assets/audio/bg-music.mp3" loop preload="metadata"></audio>
 <button id="music-toggle" type="button" aria-pressed="false" aria-label="Play music">&#9654;</button>
+<div id="music-hint" hidden>Tap to play music</div>
 <script>
 const bgMusic = document.getElementById("bg-music");
 bgMusic.volume = 0.1; // Set the volume to 10%
@@ -201,6 +202,28 @@ window.addEventListener("click", (event) => {
   if (musicToggle.contains(event.target)) return;
   if (bgMusic.paused) bgMusic.play().catch(() => {});
 }, { once: true });
+const musicHint = document.getElementById("music-hint");
+let hasPlayed = !bgMusic.paused;
+
+setTimeout(() => {
+  if (!hasPlayed && bgMusic.paused && !musicToggle.hidden) {
+    musicHint.hidden = false;
+  }
+}, 1200);
+
+bgMusic.addEventListener("play", () => {
+  hasPlayed = true;
+  musicHint.hidden = true;
+});
+
+bgMusic.addEventListener("error", () => {
+  musicHint.hidden = true;
+});
+
+if (bgMusic.error) {
+  musicToggle.hidden = true;
+  musicHint.hidden = true;
+}
 </script>
   <script src="js/main.js"></script>
 </body>
