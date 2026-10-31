@@ -166,7 +166,42 @@ style="display: block; margin: 0 auto; border: 0;">Loading…</iframe>
   <dialog id="lightbox" aria-label="Enlarged photo">
     <img src="" alt="">
   </dialog>
+<audio id="bg-music" src="assets/audio/bg-music.mp3" loop preload="metadata"></audio>
+<button id="music-toggle" type="button" aria-pressed="false" aria-label="Play music">&#9654;</button>
+<script>
+const bgMusic = document.getElementById("bg-music");
+bgMusic.volume = 0.1; // Set the volume to 10%
+const musicToggle = document.getElementById("music-toggle");
 
+function syncMusicButton() {
+  const playing = !bgMusic.paused;
+  musicToggle.textContent = playing ? "❚❚" : "▶";
+  musicToggle.setAttribute("aria-pressed", playing ? "true" : "false");
+  musicToggle.setAttribute("aria-label", playing ? "Pause music" : "Play music");
+}
+
+musicToggle.addEventListener("click", () => {
+  if (bgMusic.paused) {
+    bgMusic.play().catch(() => {});
+  } else {
+    bgMusic.pause();
+  }
+});
+
+bgMusic.addEventListener("play", syncMusicButton);
+bgMusic.addEventListener("pause", syncMusicButton);
+bgMusic.addEventListener("error", () => {
+  musicToggle.hidden = true;
+});
+// Attempt autoplay; keep the play button if blocked.
+bgMusic.play().catch(() => {});
+
+// Retry on the first click or tap outside the music button.
+window.addEventListener("click", (event) => {
+  if (musicToggle.contains(event.target)) return;
+  if (bgMusic.paused) bgMusic.play().catch(() => {});
+}, { once: true });
+</script>
   <script src="js/main.js"></script>
 </body>
 </html>
