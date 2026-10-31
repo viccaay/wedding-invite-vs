@@ -127,10 +127,13 @@
         <img src="assets/img/dance.jpg" alt="Couples dancing" loading="lazy">
       </div>
       <div style="max-width: 28rem; margin: 2rem auto 0; text-align: center;">
-  <a href="https://www.instagram.com/reel/Dd34iWZxlef/?srtk=YTNwYTBxbTByYm93" target="_blank" rel="noopener" style="text-decoration: none; color: #171716;">
-    <img src="assets/img/reel_thumb.jpg" alt="Watch our film on Instagram" style="width: 100%; display: block;">
-    <span style="display: inline-block; font-family: Karla, Helvetica, sans-serif; font-size: 0.7rem; letter-spacing: 0.32em; text-transform: uppercase; border: 1px solid #171716; padding: 0.85em 1.8em; margin-top: 1.4rem;">Watch our film</span>
-  </a>
+  <div>
+    <video id="wedding-film" controls playsinline preload="metadata" poster="assets/img/reel_thumb.jpg" style="width: 100%; display: block; background: #161616;">
+  <source src="assets/videos/rathinamo.mp4" type="video/mp4">
+  Your browser can't play this video.
+  <a href="assets/video/rathinamo.mp4">Download the video</a>.
+</video>
+    </div>
 </div>
       <!-- <p class="gallery-credit">Placeholder photos · Unsplash</p> -->
     </section>
@@ -200,8 +203,10 @@ bgMusic.play().catch(() => {});
 // Retry on the first click or tap outside the music button.
 window.addEventListener("click", (event) => {
   if (musicToggle.contains(event.target)) return;
+  if (event.target.closest("#wedding-film")) return;
   if (bgMusic.paused) bgMusic.play().catch(() => {});
 }, { once: true });
+
 const musicHint = document.getElementById("music-hint");
 let hasPlayed = !bgMusic.paused;
 
@@ -224,6 +229,10 @@ if (bgMusic.error) {
   musicToggle.hidden = true;
   musicHint.hidden = true;
 }
+const weddingFilm = document.getElementById("wedding-film");
+weddingFilm.addEventListener("play", () => {
+  bgMusic.pause();
+});
 </script>
   <script src="js/main.js"></script>
 </body>
