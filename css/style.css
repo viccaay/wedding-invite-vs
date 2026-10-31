@@ -53,19 +53,19 @@ main, header, footer { position: relative; z-index: 1; }
 
 img { max-width: 100%; display: block; }
 
-section { padding: 5.5rem 1.5rem; }
+section { padding: 1.5rem 1.5rem; }
 
 /* ── Cover ────────────────────────────────────────────────────── */
 
-.hero {
-  min-height: 100svh;
+/* .hero { */
+  /* min-height: 100svh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   text-align: center;
-  padding: 3rem 1rem 4.5rem;
-}
+  padding: 3rem 1rem 4.5rem; 
+ } */
 
 /* Monogram with overlapping initials */
 .monogram {
@@ -487,8 +487,8 @@ section { padding: 5.5rem 1.5rem; }
 
 .quote {
   text-align: center;
-  padding-top: 3rem;
-  padding-bottom: 7rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 .quote p {
   font-style: italic;
@@ -566,4 +566,14 @@ section { padding: 5.5rem 1.5rem; }
   .reveal { opacity: 1; transform: none; transition: none; }
   .monogram, .hero-names { animation: none; }
   .scroll-hint span { animation: none; }
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem 1rem 4.5rem;
+  gap: 2rem;
 }
