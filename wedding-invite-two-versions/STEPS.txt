@@ -1,0 +1,17 @@
+TWO VERSIONS OF THE INVITE SITE
+
+What changed (3 files):
+  family/index.html   NEW - the version for her side, no RSVP section
+  index.html          same as before (RSVP kept), plus a small link-preview fix
+  js/main.js          small fix so it doesn't error on the no-RSVP page
+
+To publish:
+  1. Unzip this into your repo folder (~/wedding_invite_vs/wedding-invite-vs),
+     choosing "replace" when asked.
+  2. In Terminal, from that folder:
+       ./scripts/publish.sh "Add family version without RSVP"
+  3. Done. Your side:  viccaay.github.io/wedding-invite-vs/
+     Her side:          viccaay.github.io/wedding-invite-vs/family/
+
+Note: the local visual editor only edits the root index.html. If you change
+the site later with the editor, ask Instinct to re-sync the family copy.

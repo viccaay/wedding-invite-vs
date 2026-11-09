@@ -86,7 +86,7 @@ lightbox.addEventListener("click", () => lightbox.close());
 const form = document.getElementById("rsvp-form");
 const note = document.getElementById("rsvp-note");
 
-form.addEventListener("submit", (event) => {
+if (form) form.addEventListener("submit", (event) => {
   event.preventDefault();
 
   const data = new FormData(form);
